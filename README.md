@@ -7,7 +7,7 @@ Detecting the wear on HDD of Earlham servers
 - [RAID Levels](#raid-levels)
 - [What is SMART](#what-is-smart)
 - [What Attributes Are Important](#what-attributes-are-important)
-- []
+- [Checking SMART parameters](#checking-smart-parameters)
 
 ### Research Goal
 
@@ -38,6 +38,12 @@ Smart, acronym for **Self-Monitoring Analysis and Reporting Technology**, is a i
 
 
 ### Checking SMART parameters
+
+#### HDD structure in Hopper (DNS: hopper.cluster.earlham.edu)
+<img width="864" alt="Screen Shot 2022-09-15 at 11 31 29" src="https://user-images.githubusercontent.com/113309314/190445355-7575124b-a293-49dd-a34a-d233fd9bd92a.png">
+
+I performed ssh from my local machine to a machine called hopper, which is one of our cluster machines. Once remote access is completed, `sudo su - root` was ran in the command prompt to become the root of the machine. Linux has a very strong principle of treating everything as a file, thus these listed HDDs are also treated as a file, which is the directory `/dev/`.
+
 
 
 
