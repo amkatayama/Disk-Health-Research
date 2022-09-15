@@ -40,10 +40,15 @@ Smart, acronym for **Self-Monitoring Analysis and Reporting Technology**, is a i
 ### Checking SMART parameters
 
 #### HDD structure in Hopper (DNS: hopper.cluster.earlham.edu)
-<img width="864" alt="Screen Shot 2022-09-15 at 11 31 29" src="https://user-images.githubusercontent.com/113309314/190445355-7575124b-a293-49dd-a34a-d233fd9bd92a.png">
+
+<img width="734" alt="Screen Shot 2022-09-15 at 12 45 42" src="https://user-images.githubusercontent.com/113309314/190461098-f63700a3-fd0d-445d-83cd-1154c359196e.png">
 
 I performed ssh from my local machine to a machine called hopper, which is one of our cluster machines. Once remote access is completed, `sudo su - root` was ran in the command prompt to become the root of the machine. Linux has a very strong principle of treating everything as a file, thus these listed HDDs are also treated as a file, which is the directory `/dev/`.
 
+#### SMART Parameters 
 
+<img width="981" alt="Screen Shot 2022-09-15 at 12 47 47" src="https://user-images.githubusercontent.com/113309314/190461485-cc98a8d6-dc5a-4b1c-8f4d-c0cc4320a13a.png">
+
+The command `smartctl -a /dev/sda` uses SMART tool to list out all the information about the `sda` hard disk. This example above is the actual data received when running this command in hopper. Out of all the listed attributes, there are some variables that matters more when coming to predicting failures of HDDs.
 
 
