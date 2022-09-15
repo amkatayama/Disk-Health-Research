@@ -7,7 +7,7 @@ Detecting the wear on HDD of Earlham servers
 - [RAID Levels](#raid-levels)
 - [What is SMART](#what-is-smart)
 - [What Attributes Are Important](#what-attributes-are-important)
-- 
+- []
 
 ### Research Goal
 
@@ -35,6 +35,9 @@ Smart, acronym for **Self-Monitoring Analysis and Reporting Technology**, is a i
 2. **Reported Uncorrectable Errors**: This keeps count of errors within the hard drive which could not be recovered, and it is also an important factor to check when we are predicting the failure of them. 
 
 3. **Disk Temperature**(Temperature_Celsius): Also an important attribute to look as if the disk temperature is over 60 degreed celsius, it has a risk of reducing its lifespan. 
+
+
+### Checking SMART parameters
 
 
 
