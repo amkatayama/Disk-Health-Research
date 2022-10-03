@@ -43,7 +43,7 @@ Smart, acronym for **Self-Monitoring Analysis and Reporting Technology**, is a i
 
 <img width="734" alt="Screen Shot 2022-09-15 at 12 45 42" src="https://user-images.githubusercontent.com/113309314/190461098-f63700a3-fd0d-445d-83cd-1154c359196e.png">
 
-I performed ssh from my local machine to a machine called hopper, which is one of our cluster machines. Once remote access is completed, `sudo su - root` was ran in the command prompt to become the root of the machine. Linux has a very strong principle of treating everything as a file, thus these listed HDDs are also treated as a file, which is the directory `/dev/`.
+I performed ssh from my local machine to a machine called hopper, which is one of our cluster machines. Once remote access is completed, `sudo su - root` was ran in the command prompt to become the root of the machine. Linux has a very strong principle of treating everything as a file, thus these listed HDDs are also treated as a file, which is located in the directory `/dev/`.
 
 #### SMART Parameters 
 
