@@ -103,7 +103,7 @@ We can check that the command lines for running the `check_smart.pl` is being pr
 
 #### Removing Airflow_Temperature_Cel
 
-One problem we faced during this research was that Nagios Core was showing WARNING signs for some hosts even when they were just fine. One of the reason this occured is because Nagios keeps record of old data too. If one of the SMART attributes resulted in a problematic value in the past; meaning when it has given out WARNING signd in past, then it just stays there until the system administrators do something about it. This happened for us with several servers. Taking one of out cluster servers, `sakurai`, as an example:
+One problem we faced during this research was that Nagios Core was showing WARNING signs for some hosts even when they were just fine. One of the reason this occured is because Nagios keeps record of old data too. If one of the SMART attributes resulted in a problematic value in the past; meaning when it has given out WARNING signd in past, then it just stays there until the system administrators do something about it. This happened for us with several servers. Taking one of our cluster servers, `sakurai`, as an example:
 
 <img width="1199" alt="Screen Shot 2022-11-13 at 20 12 46" src="https://user-images.githubusercontent.com/113309314/201555716-be9b3337-3500-4bd5-b8f8-9f975a86f77c.png">
 
@@ -113,9 +113,11 @@ Notice here that the error duration has been more than 6 days. If we look at the
 WARNING: Drive  ST380215AS S/N 9QZCBF4J:  Attribute Airflow_Temperature_Cel failed at In_the_past, |Raw_Read_Error_Rate=0 Spin_Up_Time=0 Start_Stop_Count=150 Reallocated_Sector_Ct=0 Seek_Error_Rate=126393501 Power_On_Hours=97307 Spin_Retry_Count=0 Power_Cycle_Count=150 Reported_Uncorrect=0 High_Fly_Writes=0 Airflow_Temperature_Cel=28 Temperature_Celsius=28 Hardware_ECC_Recovered=242332071 Current_Pending_Sector=0 Offline_Uncorrectable=0 UDMA_CRC_Error_Count=0 Multi_Zone_Error_Rate=0 Data_Address_Mark_Errs=0
 ```
 
-
+If we ran the same command but with addtional option `-e 190`, which means "exclude SMART ID#190 (Temperature)":
 
 `root@sakurai:~# /etc/nagios/plugins/check_smart.pl -d /dev/sdc -i auto -e 190`
+
+
 ```
 OK: Drive  ST380215AS S/N 9QZCBF4J: no SMART errors detected. |Raw_Read_Error_Rate=0 Spin_Up_Time=0 Start_Stop_Count=150 Reallocated_Sector_Ct=0 Seek_Error_Rate=126393534 Power_On_Hours=97307 Spin_Retry_Count=0 Power_Cycle_Count=150 Reported_Uncorrect=0 High_Fly_Writes=0 Airflow_Temperature_Cel=28 Temperature_Celsius=28 Hardware_ECC_Recovered=242332083 Current_Pending_Sector=0 Offline_Uncorrectable=0 UDMA_CRC_Error_Count=0 Multi_Zone_Error_Rate=0 Data_Address_Mark_Errs=0
 ```
