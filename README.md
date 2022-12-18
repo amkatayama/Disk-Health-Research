@@ -8,7 +8,7 @@ Detecting the wear on HDD of Earlham servers
 - [What is SMART](#what-is-smart)
 - [What Attributes Are Important](#what-attributes-are-important)
 - [Checking SMART parameters](#checking-smart-parameters)
-- [Nagios Monitoring System](nagios-monitoring-system)
+- [Nagios Monitoring System](#nagios-monitoring-system)
 
 ### Research Goal
 
