@@ -113,15 +113,24 @@ Notice here that the error duration has been more than 6 days. If we look at the
 WARNING: Drive  ST380215AS S/N 9QZCBF4J:  Attribute Airflow_Temperature_Cel failed at In_the_past, |Raw_Read_Error_Rate=0 Spin_Up_Time=0 Start_Stop_Count=150 Reallocated_Sector_Ct=0 Seek_Error_Rate=126393501 Power_On_Hours=97307 Spin_Retry_Count=0 Power_Cycle_Count=150 Reported_Uncorrect=0 High_Fly_Writes=0 Airflow_Temperature_Cel=28 Temperature_Celsius=28 Hardware_ECC_Recovered=242332071 Current_Pending_Sector=0 Offline_Uncorrectable=0 UDMA_CRC_Error_Count=0 Multi_Zone_Error_Rate=0 Data_Address_Mark_Errs=0
 ```
 
-If we ran the same command but with addtional option `-e 190`, which means "exclude SMART ID#190 (Temperature)":
-
-`root@sakurai:~# /etc/nagios/plugins/check_smart.pl -d /dev/sdc -i auto -e 190`
-
+If we ran the same command but with addtional option `-e 190`, which means "exclude SMART ID#190 (Temperature)": `root@sakurai:~# /etc/nagios/plugins/check_smart.pl -d /dev/sdc -i auto -e 190`, we get the following output.
 
 ```
 OK: Drive  ST380215AS S/N 9QZCBF4J: no SMART errors detected. |Raw_Read_Error_Rate=0 Spin_Up_Time=0 Start_Stop_Count=150 Reallocated_Sector_Ct=0 Seek_Error_Rate=126393534 Power_On_Hours=97307 Spin_Retry_Count=0 Power_Cycle_Count=150 Reported_Uncorrect=0 High_Fly_Writes=0 Airflow_Temperature_Cel=28 Temperature_Celsius=28 Hardware_ECC_Recovered=242332083 Current_Pending_Sector=0 Offline_Uncorrectable=0 UDMA_CRC_Error_Count=0 Multi_Zone_Error_Rate=0 Data_Address_Mark_Errs=0
 ```
 
+This change was only a temporary on terminal output however I wanted to permanently change this, so that we don't get thrown off by the WARNING signs on Nagios even if the hosts were completely fine. I made this change to the main configuration file located in `/etc/nagios/` of each hosts. For every command lines for each disks I added `-e 190` so that the plugins don't perform the check for disk temperature.
 
+```
+command[check_smart_sda]=/etc/nagios/plugins/check_smart.pl -d /dev/sda -i auto -e 190
+command[check_smart_sdb]=/etc/nagios/plugins/check_smart.pl -d /dev/sdb -i auto -e 190
+command[check_smart_sdc]=/etc/nagios/plugins/check_smart.pl -d /dev/sdc -i auto -e 190
+command[check_smart_sdd]=/etc/nagios/plugins/check_smart.pl -d /dev/sdd -i auto -e 190
+```
 
+The outcome for this change is demonstrated in the screenshot attached below. 
+
+<img width="1045" alt="Screen Shot 2022-12-17 at 17 32 37" src="https://user-images.githubusercontent.com/113309314/208271435-604b3099-ab31-4890-8b95-ed92c5a03e27.png">
+
+Now the WARNING sign has been taken care of. 
 
